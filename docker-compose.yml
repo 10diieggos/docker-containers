@@ -5,6 +5,8 @@ services:
     container_name: meu-mongo
     networks:
       - net-app
+    volumes:
+      - alurabooks-vol:/data/db
   app:
     image: aluradocker/alura-books:1.0
     container_name: alurabooks
@@ -14,6 +16,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+volumes:
+  alurabooks-vol:
 
 networks:
   # The presence of these objects is sufficient to define them
