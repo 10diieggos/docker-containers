@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  db:
+    image: mongo:4.4.6
+    container_name: meu-mongo
+    networks:
+      - net-app
+  app:
+    image: aluradocker/alura-books:1.0
+    container_name: alurabooks
+    networks:
+      - net-app
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    depends_on:
+      - db
+
+networks:
+  # The presence of these objects is sufficient to define them
+  net-app: {}
